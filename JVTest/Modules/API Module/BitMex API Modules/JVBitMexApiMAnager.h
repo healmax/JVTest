@@ -8,12 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@class AFHTTPRequestOperationManager;
+@class AFURLSessionManager;
 
 @interface JVBitMexApiMAnager : NSObject
 
 +(instancetype)sharedManager;
 
-@property (strong, nonatomic, readonly) AFHTTPRequestOperationManager *manager; // compose
+@property (strong, nonatomic, readonly) AFURLSessionManager *manager; // compose
 
 @end

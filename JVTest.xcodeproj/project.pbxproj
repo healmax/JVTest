@@ -16,11 +16,10 @@
 		4F4B054920B2A8F500ACB6EB /* JVBitMexApiMAnager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4B054820B2A8F500ACB6EB /* JVBitMexApiMAnager.m */; };
 		4F4B054C20B2A91000ACB6EB /* JVBinanceApiMAnager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4B054B20B2A91000ACB6EB /* JVBinanceApiMAnager.m */; };
 		4F4B055020B2B6D900ACB6EB /* JVPriceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4B054F20B2B6D900ACB6EB /* JVPriceInfo.m */; };
-		ADB3E243BDD115A7A1465212 /* libPods-JVTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A81B86FD54058027880EC6B /* libPods-JVTest.a */; };
+		F7DB94F2D12B799676ECB9F5 /* Pods_JVTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4F851913739B78FEF236DCA /* Pods_JVTest.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4A81B86FD54058027880EC6B /* libPods-JVTest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JVTest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F0DE25A20B29A9A003EBB2F /* JVTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JVTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F0DE25D20B29A9A003EBB2F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F0DE25E20B29A9A003EBB2F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -38,6 +37,7 @@
 		4F4B054E20B2B6D900ACB6EB /* JVPriceInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JVPriceInfo.h; sourceTree = "<group>"; };
 		4F4B054F20B2B6D900ACB6EB /* JVPriceInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JVPriceInfo.m; sourceTree = "<group>"; };
 		693CB17B8C3053E49081C449 /* Pods-JVTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JVTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JVTest/Pods-JVTest.debug.xcconfig"; sourceTree = "<group>"; };
+		B4F851913739B78FEF236DCA /* Pods_JVTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JVTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5C43AF53A269FFB1CB9B9A1 /* Pods-JVTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JVTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-JVTest/Pods-JVTest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -46,7 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ADB3E243BDD115A7A1465212 /* libPods-JVTest.a in Frameworks */,
+				F7DB94F2D12B799676ECB9F5 /* Pods_JVTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,7 +56,7 @@
 		23DB71D57C7BF299F713DA83 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4A81B86FD54058027880EC6B /* libPods-JVTest.a */,
+				B4F851913739B78FEF236DCA /* Pods_JVTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -73,6 +73,7 @@
 		4F0DE25120B29A9A003EBB2F = {
 			isa = PBXGroup;
 			children = (
+				4F4B055520B2C6DF00ACB6EB /* ThirdParty */,
 				4F0DE25C20B29A9A003EBB2F /* JVTest */,
 				4F0DE25B20B29A9A003EBB2F /* Products */,
 				4738FF5AF23877FBE9A42446 /* Pods */,
@@ -182,6 +183,13 @@
 			path = Xibs;
 			sourceTree = "<group>";
 		};
+		4F4B055520B2C6DF00ACB6EB /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ThirdParty;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -272,9 +280,18 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-JVTest/Pods-JVTest-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/ISO8601/ISO8601.framework",
+				"${BUILT_PRODUCTS_DIR}/JSONModel/JSONModel.framework",
+				"${BUILT_PRODUCTS_DIR}/SwaggerClient/SwaggerClient.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ISO8601.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSONModel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwaggerClient.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -455,10 +472,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B9JJV5E86Z;
 				INFOPLIST_FILE = JVTest/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = test.JVTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -473,10 +487,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B9JJV5E86Z;
 				INFOPLIST_FILE = JVTest/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = test.JVTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";

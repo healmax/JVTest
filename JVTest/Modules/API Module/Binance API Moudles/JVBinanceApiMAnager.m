@@ -14,7 +14,7 @@ static NSString * const kBinanceUrlString = @"https://api.binance.com";
 
 @interface JVBinanceApiMAnager()
 
-@property (strong,nonatomic, readwrite) AFHTTPRequestOperationManager *manager; // compose
+@property (strong, nonatomic, readwrite) AFHTTPSessionManager *manager; // compose
 
 @end
 
@@ -32,33 +32,31 @@ static NSString * const kBinanceUrlString = @"https://api.binance.com";
 
 -(instancetype)init {
     if (self = [super init]) {
-        NSURL *bitMexURL = [NSURL URLWithString:kBinanceUrlString];
-        self.manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:bitMexURL];
+        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+        self.manager = [[AFHTTPSessionManager alloc] initWithSessionConfiguration:configuration];
         AFJSONResponseSerializer *serializer = [AFJSONResponseSerializer serializer];
         serializer.removesKeysWithNullValues = YES;
         self.manager.responseSerializer = serializer;
-        
-        self.manager.requestSerializer = [AFJSONRequestSerializer serializer];
-        self.manager.requestSerializer.timeoutInterval = 20.0;
-        self.manager.requestSerializer.cachePolicy = NSURLRequestReloadIgnoringLocalAndRemoteCacheData;
     }
     
     return self;
 }
 
 - (void)getBTCPriceWithCompletion:(void(^)(JVPriceInfo *priceInfo, NSError *error))completion {
-    NSString *path = @"api/v3/ticker/price";
+    
+
+    NSString *path = @"https://api.binance.com/api/v3/ticker/price";
     NSDictionary *parameters = @{
                                  @"symbol" : @"BTCUSDT",
                                  };
-    [self.manager GET:path parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+    [self.manager GET:path parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         JVPriceInfo *priceInfo = [[JVPriceInfo alloc] initWithBinanceJSON:responseObject];
         if (completion) {
             completion(priceInfo, nil);
         }
-    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if (completion) {
-            
+
         }
     }];
 }

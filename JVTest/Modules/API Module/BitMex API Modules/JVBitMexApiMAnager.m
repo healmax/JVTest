@@ -13,7 +13,7 @@ static NSString * const kBitMexUrlString = @"";
 
 @interface JVBitMexApiMAnager()
 
-@property (strong, nonatomic, readwrite) AFHTTPRequestOperationManager *manager; // compose
+@property (strong, nonatomic, readwrite) AFURLSessionManager *manager;
 
 @end
 
@@ -31,15 +31,15 @@ static NSString * const kBitMexUrlString = @"";
 
 -(instancetype)init {
     if (self = [super init]) {
-        NSURL *bitMexURL = [NSURL URLWithString:kBitMexUrlString];
-        self.manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:bitMexURL];
-        AFJSONResponseSerializer *serializer = [AFJSONResponseSerializer serializer];
-        serializer.removesKeysWithNullValues = YES;
-        self.manager.responseSerializer = serializer;
-        
-        self.manager.requestSerializer = [AFJSONRequestSerializer serializer];
-        self.manager.requestSerializer.timeoutInterval = 20.0;
-        self.manager.requestSerializer.cachePolicy = NSURLRequestReloadIgnoringLocalAndRemoteCacheData;
+//        NSURL *bitMexURL = [NSURL URLWithString:kBitMexUrlString];
+//        self.manager = [[AFURLSessionManager alloc] initWithBaseURL:bitMexURL];
+//        AFJSONResponseSerializer *serializer = [AFJSONResponseSerializer serializer];
+//        serializer.removesKeysWithNullValues = YES;
+//        self.manager.responseSerializer = serializer;
+//        
+//        self.manager.requestSerializer = [AFJSONRequestSerializer serializer];
+//        self.manager.requestSerializer.timeoutInterval = 20.0;
+//        self.manager.requestSerializer.cachePolicy = NSURLRequestReloadIgnoringLocalAndRemoteCacheData;
     }
     
     return self;

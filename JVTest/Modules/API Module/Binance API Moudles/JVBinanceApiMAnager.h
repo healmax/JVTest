@@ -8,14 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-@class AFHTTPRequestOperationManager;
+@class AFHTTPSessionManager;
 @class JVPriceInfo;
 
 @interface JVBinanceApiMAnager : NSObject
 
 +(instancetype)sharedManager;
 
-@property (strong,nonatomic, readonly) AFHTTPRequestOperationManager *manager; // compose
+@property (strong, nonatomic, readonly) AFHTTPSessionManager *manager; // compose
 
 - (void)getBTCPriceWithCompletion:(void(^)(JVPriceInfo *priceInfo, NSError *error))completion;
 
