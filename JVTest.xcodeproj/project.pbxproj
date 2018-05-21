@@ -154,8 +154,32 @@
 		4F4B055120B2BB5C00ACB6EB /* Common Modules */ = {
 			isa = PBXGroup;
 			children = (
+				4F4B055420B2BC9900ACB6EB /* Xibs */,
+				4F4B055320B2BC8F00ACB6EB /* Views */,
+				4F4B055220B2BC7E00ACB6EB /* Models */,
 			);
 			path = "Common Modules";
+			sourceTree = "<group>";
+		};
+		4F4B055220B2BC7E00ACB6EB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4F4B055320B2BC8F00ACB6EB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4F4B055420B2BC9900ACB6EB /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Xibs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
