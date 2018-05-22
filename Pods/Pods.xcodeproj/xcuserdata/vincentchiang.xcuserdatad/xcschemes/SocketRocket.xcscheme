@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A3ED5BDCE34C416E03475F239B31714A"
-               BlueprintName = "SwaggerClient"
+               BlueprintIdentifier = "2CCD9009A004DD3B40914AFB571485F0"
+               BlueprintName = "SocketRocket"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "SwaggerClient.framework">
+               BuildableName = "SocketRocket.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

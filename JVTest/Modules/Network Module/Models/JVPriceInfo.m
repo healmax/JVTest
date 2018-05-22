@@ -12,7 +12,16 @@
 
 - (instancetype)initWithBinanceJSON:(NSDictionary *)JSON {
     if (self = [super init]) {
-        self.coinToCoin = JSON[@"symbol"];
+        self.symbol = JSON[@"symbol"];
+        self.price = JSON[@"price"];
+    }
+    
+    return self;
+}
+
+- (instancetype)initWithBitMexJSON:(NSDictionary *)JSON {
+    if (self = [super init]) {
+        self.symbol = JSON[@"symbol"];
         self.price = JSON[@"price"];
     }
     

@@ -8,8 +8,13 @@
 
 #import "ViewController.h"
 #import "JVBinanceApiMAnager.h"
+#import <SwaggerClient/SWGDefaultConfiguration.h>
+#import <SwaggerClient/SWGAPIKeyApi.h>
+#import "JVBitMexSocketManager.h"
 
-@interface ViewController ()
+@interface ViewController ()<SRWebSocketDelegate>
+
+@property(strong, nonatomic) SRWebSocket *socket;
 
 @end
 
@@ -25,11 +30,8 @@
     [[JVBinanceApiMAnager sharedManager] getBTCPriceWithCompletion:^(JVPriceInfo *priceInfo, NSError *error) {
         
     }];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
+    [[JVBitMexSocketManager shareInstance] openSocket];
 }
 
 

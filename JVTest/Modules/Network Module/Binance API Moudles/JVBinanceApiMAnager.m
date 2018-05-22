@@ -32,8 +32,8 @@ static NSString * const kBinanceUrlString = @"https://api.binance.com";
 
 -(instancetype)init {
     if (self = [super init]) {
-        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-        self.manager = [[AFHTTPSessionManager alloc] initWithSessionConfiguration:configuration];
+        NSURL *url = [NSURL URLWithString:kBinanceUrlString];
+        self.manager = [[AFHTTPSessionManager alloc] initWithBaseURL:url];
         AFJSONResponseSerializer *serializer = [AFJSONResponseSerializer serializer];
         serializer.removesKeysWithNullValues = YES;
         self.manager.responseSerializer = serializer;
@@ -43,9 +43,7 @@ static NSString * const kBinanceUrlString = @"https://api.binance.com";
 }
 
 - (void)getBTCPriceWithCompletion:(void(^)(JVPriceInfo *priceInfo, NSError *error))completion {
-    
-
-    NSString *path = @"https://api.binance.com/api/v3/ticker/price";
+    NSString *path = @"api/v3/ticker/price";
     NSDictionary *parameters = @{
                                  @"symbol" : @"BTCUSDT",
                                  };
