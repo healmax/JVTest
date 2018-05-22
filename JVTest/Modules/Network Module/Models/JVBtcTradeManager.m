@@ -82,6 +82,32 @@ static NSInteger const kMaxHistoryCount = 20;
     JVPriceInfo *bitMexBtcPriceInfo = [self.bitMexHistory lastObject];
     JVPriceInfo *binanceBtcPriceInfo = [self.binanceHistory lastObject];
     
+    static NSInteger countTen = 0;
+    static NSInteger countTwenty = 0;
+    static NSInteger countThirty = 0;
+    static NSInteger countFourty = 0;
+    
+    if (fabsf(([binanceBtcPriceInfo.price floatValue] - [bitMexBtcPriceInfo.price floatValue])) > 10) {
+        countTen++;
+        NSLog(@"[Vincent : abs(binance price - bitMex price) > 10] : %@", @(countTen));
+    }
+    
+    
+    if (fabsf(([binanceBtcPriceInfo.price floatValue] - [bitMexBtcPriceInfo.price floatValue])) > 20) {
+        countTwenty++;
+        NSLog(@"[Vincent : abs(binance price - bitMex price) > 20] : %@", @(countTwenty));
+    }
+    
+    if (fabsf(([binanceBtcPriceInfo.price floatValue] - [bitMexBtcPriceInfo.price floatValue])) > 30) {
+        countThirty++;
+        NSLog(@"[Vincent : abs(binance price - bitMex price) > 30] : %@", @(countThirty));
+    }
+    
+    if (fabsf(([binanceBtcPriceInfo.price floatValue] - [bitMexBtcPriceInfo.price floatValue])) > 40) {
+        countFourty++;
+        NSLog(@"[Vincent : abs(binance price - bitMex price) > 40] : %@", @(countFourty));
+    }
+    
     NSInteger positiveCount = 0;
     NSInteger negativeCount = 0;
     
