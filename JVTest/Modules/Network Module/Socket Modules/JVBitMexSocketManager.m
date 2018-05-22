@@ -7,11 +7,16 @@
 //
 
 #import "JVBitMexSocketManager.h"
+#import "JVPriceInfo.h"
 #import <SocketRocket/SRWebSocket.h>
 
 static NSString * const kBitMexSocketUrl = @"wss://www.bitmex.com/realtime";
 
+NSString * const kJVBitMexSocketManagerDidReceiveMessage = @"JVBitMexSocketManagerDidReceiveMessage";
+
 @interface JVBitMexSocketManager()
+
+@property (copy, nonatomic) void (^subscribeBTCChannelBlock)(void);
 
 @end
 
@@ -29,12 +34,29 @@ static NSString * const kBitMexSocketUrl = @"wss://www.bitmex.com/realtime";
 }
 
 - (void)socketDidOpen {
-    NSString *subscribeChannel = @"{\"op\": \"subscribe\", \"args\": [\"instrument:XBTUSD\"]}";
-    [self subscribeChannelWithString:subscribeChannel];
+    if (self.subscribeBTCChannelBlock) {
+        self.subscribeBTCChannelBlock();
+    }
 }
 
-- (void)didReceiveMessage:(id)message {
-    NSLog(@"%@", message);
+- (void)subscribeBTCChannel {
+    __weak JVBitMexSocketManager *weakSelf = self;
+    self.subscribeBTCChannelBlock = ^{
+        NSString *subscribeChannel = @"{\"op\": \"subscribe\", \"args\": [\"instrument:XBTUSD\"]}";
+        [weakSelf subscribeChannelWithString:subscribeChannel];
+    };
+}
+
+- (void)didReceiveMessage:(NSDictionary *)message {
+    NSNumber *price = [message[@"data"] firstObject][@"lastPrice"];
+    NSString *action = action = message[@"action"];
+    
+    if (price == nil || ![action isEqualToString:@"update"]) {
+        return;
+    }
+    
+    JVPriceInfo *priceinfo = [[JVPriceInfo alloc] initWithBitMexJSON:message];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kJVBitMexSocketManagerDidReceiveMessage object:priceinfo];
 }
 
 @end

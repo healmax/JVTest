@@ -9,12 +9,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "JVTest/main.m"
-            timestampString = "548593158.610584"
+            filePath = "JVTest/Modules/Network Module/Models/JVBtcTradeManager.m"
+            timestampString = "548695811.470789"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "17"
-            endingLineNumber = "17">
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "-checkIfNeedTrade"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

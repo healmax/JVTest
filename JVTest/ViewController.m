@@ -7,14 +7,15 @@
 //
 
 #import "ViewController.h"
-#import "JVBinanceApiMAnager.h"
-#import <SwaggerClient/SWGDefaultConfiguration.h>
-#import <SwaggerClient/SWGAPIKeyApi.h>
 #import "JVBitMexSocketManager.h"
+#import "JVBinanceSocketManager.h"
+#import "JVPriceInfo.h"
+#import "JVBtcTradeManager.h"
 
-@interface ViewController ()<SRWebSocketDelegate>
+@interface ViewController ()
 
-@property(strong, nonatomic) SRWebSocket *socket;
+@property (weak, nonatomic) IBOutlet UILabel *binancePriceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *mexPriceLabel;
 
 @end
 
@@ -22,17 +23,33 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self commonInit];
+    [JVBtcTradeManager shareInstance];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [[JVBinanceApiMAnager sharedManager] getBTCPriceWithCompletion:^(JVPriceInfo *priceInfo, NSError *error) {
-        
-    }];
-    
-    [[JVBitMexSocketManager shareInstance] openSocket];
 }
+
+- (void)commonInit {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(binanceSocketManagerDidReceiveMessage:) name:kJVBinanceSocketManagerDidReceiveMessage object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bitMexSocketManagerDidReceiveMessage:) name:kJVBitMexSocketManagerDidReceiveMessage object:nil];
+
+}
+
+- (void)binanceSocketManagerDidReceiveMessage:(NSNotification *)notification {
+    JVPriceInfo *priceInfo = notification.object;
+    self.binancePriceLabel.text = [priceInfo.price stringValue];
+}
+
+- (void)bitMexSocketManagerDidReceiveMessage:(NSNotification *)notification {
+    JVPriceInfo *priceInfo = notification.object;
+    self.mexPriceLabel.text = [priceInfo.price stringValue];
+}
+
+
+
 
 
 @end

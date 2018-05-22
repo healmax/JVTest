@@ -12,8 +12,8 @@
 
 - (instancetype)initWithBinanceJSON:(NSDictionary *)JSON {
     if (self = [super init]) {
-        self.symbol = JSON[@"symbol"];
-        self.price = JSON[@"price"];
+        self.symbol = JSON[@"s"];
+        self.price = @([JSON[@"c"] floatValue]);
     }
     
     return self;
@@ -21,11 +21,15 @@
 
 - (instancetype)initWithBitMexJSON:(NSDictionary *)JSON {
     if (self = [super init]) {
-        self.symbol = JSON[@"symbol"];
-        self.price = JSON[@"price"];
+        self.symbol = [JSON[@"data"] firstObject][@"symbol"];
+        self.price = [JSON[@"data"] firstObject][@"lastPrice"];
     }
     
     return self;
+}
+
+- (NSString *)description {
+    return [self.price stringValue];
 }
 
 @end

@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "JVBitMexSocketManager.h"
+#import "JVBinanceSocketManager.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +18,11 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    [[JVBitMexSocketManager shareInstance] openSocket];
+    [[JVBitMexSocketManager shareInstance] subscribeBTCChannel];
+    [[JVBinanceSocketManager shareInstance] openSocket];
+    
     return YES;
 }
 

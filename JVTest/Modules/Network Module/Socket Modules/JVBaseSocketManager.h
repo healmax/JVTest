@@ -19,6 +19,6 @@
 
 - (void)socketDidOpen;
 - (void)subscribeChannelWithString:(NSString *)subscribeString;
-- (void)didReceiveMessage:(id)message;
+- (void)didReceiveMessage:(NSDictionary *)message;
 
 @end

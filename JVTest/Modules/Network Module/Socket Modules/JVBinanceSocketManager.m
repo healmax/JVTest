@@ -7,8 +7,10 @@
 //
 
 #import "JVBinanceSocketManager.h"
+#import "JVPriceInfo.h"
 
 static NSString * const kBinanceSocketUrl = @"wss://stream.binance.com:9443/ws/btcusdt@ticker";
+NSString * const kJVBinanceSocketManagerDidReceiveMessage = @"JVBinanceSocketManagerDidReceiveMessage";
 
 @implementation JVBinanceSocketManager
 
@@ -24,8 +26,8 @@ static NSString * const kBinanceSocketUrl = @"wss://stream.binance.com:9443/ws/b
 }
 
 - (void)didReceiveMessage:(NSDictionary *)message {
-    
-    NSLog(@"%@", message);
+    JVPriceInfo *priceInfo = [[JVPriceInfo alloc] initWithBinanceJSON:message];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kJVBinanceSocketManagerDidReceiveMessage object:priceInfo];
 }
 
 @end

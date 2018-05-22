@@ -8,6 +8,8 @@
 
 #import "JVBaseSocketManager.h"
 
+extern NSString * const kJVBinanceSocketManagerDidReceiveMessage;
+
 @interface JVBinanceSocketManager : JVBaseSocketManager
 
 + (instancetype)shareInstance;
