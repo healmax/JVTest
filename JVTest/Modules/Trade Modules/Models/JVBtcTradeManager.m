@@ -11,7 +11,7 @@
 #import "JVBitMexSocketManager.h"
 #import "JVPriceInfo.h"
 
-static NSInteger const kMaxHistoryCount = 20;
+static NSInteger const kMaxHistoryCount = 60;
 
 @interface JVBtcTradeManager()
 
@@ -82,9 +82,6 @@ static NSInteger const kMaxHistoryCount = 20;
     JVPriceInfo *bitMexBtcPriceInfo = [self.bitMexHistory lastObject];
     JVPriceInfo *binanceBtcPriceInfo = [self.binanceHistory lastObject];
     
-    static NSInteger count15 = 0;
-    static NSInteger count20 = 0;
-    static NSInteger count25 = 0;
     static NSInteger count30 = 0;
     static NSInteger count35 = 0;
     static NSInteger count40 = 0;
@@ -106,15 +103,6 @@ static NSInteger const kMaxHistoryCount = 20;
     } else if (([binanceBtcPriceInfo.price floatValue] - [bitMexBtcPriceInfo.price floatValue]) > 30) {
         count30++;
         NSLog(@"[Vincent : binance price - bitMex price > 30] \"binance price : %@\", \"bitMex price : %@\", \"count : %@\"", binanceBtcPriceInfo.price, bitMexBtcPriceInfo.price, @(count30));
-    } else if (([binanceBtcPriceInfo.price floatValue] - [bitMexBtcPriceInfo.price floatValue]) > 25) {
-        count25++;
-        NSLog(@"[Vincent : binance price - bitMex price > 25] \"binance price : %@\", \"bitMex price : %@\", \"count : %@\"", binanceBtcPriceInfo.price, bitMexBtcPriceInfo.price, @(count25));
-    } else if (([binanceBtcPriceInfo.price floatValue] - [bitMexBtcPriceInfo.price floatValue]) > 20) {
-        count20++;
-        NSLog(@"[Vincent : binance price - bitMex price > 20] \"binance price : %@\", \"bitMex price : %@\", \"count : %@\"", binanceBtcPriceInfo.price, bitMexBtcPriceInfo.price, @(count20));
-    } else if (([binanceBtcPriceInfo.price floatValue] - [bitMexBtcPriceInfo.price floatValue]) > 15) {
-        count15++;
-        NSLog(@"[Vincent : binance price - bitMex price > 15] \"binance price : %@\", \"bitMex price : %@\", \"count : %@\"", binanceBtcPriceInfo.price, bitMexBtcPriceInfo.price, @(count15));
     }
     
     
@@ -133,15 +121,6 @@ static NSInteger const kMaxHistoryCount = 20;
     } else if (([binanceBtcPriceInfo.price floatValue] - [bitMexBtcPriceInfo.price floatValue]) < -30) {
         count30++;
         NSLog(@"[Vincent : binance price - bitMex price < -30] \"binance price : %@\", \"bitMex price : %@\", \"count : %@\"", binanceBtcPriceInfo.price, bitMexBtcPriceInfo.price, @(count30));
-    } else if (([binanceBtcPriceInfo.price floatValue] - [bitMexBtcPriceInfo.price floatValue]) < -25) {
-        count25++;
-        NSLog(@"[Vincent : binance price - bitMex price < -25] \"binance price : %@\", \"bitMex price : %@\", \"count : %@\"", binanceBtcPriceInfo.price, bitMexBtcPriceInfo.price, @(count25));
-    } else if (([binanceBtcPriceInfo.price floatValue] - [bitMexBtcPriceInfo.price floatValue]) < -20) {
-        count20++;
-        NSLog(@"[Vincent : binance price - bitMex price < -20] \"binance price : %@\", \"bitMex price : %@\", \"count : %@\"", binanceBtcPriceInfo.price, bitMexBtcPriceInfo.price, @(count20));
-    } else if (([binanceBtcPriceInfo.price floatValue] - [bitMexBtcPriceInfo.price floatValue]) < -15) {
-        count15++;
-        NSLog(@"[Vincent : binance price - bitMex price < -15] \"binance price : %@\", \"bitMex price : %@\", \"count : %@\"", binanceBtcPriceInfo.price, bitMexBtcPriceInfo.price, @(count15));
     }
     
     NSInteger positiveCount = 0;
@@ -150,7 +129,17 @@ static NSInteger const kMaxHistoryCount = 20;
     NSMutableArray<NSNumber *> *positiveDiff = [NSMutableArray new];
     NSMutableArray<NSNumber *> *negativeDiff = [NSMutableArray new];
     
+    float quantity = 0;
+    NSInteger inRangeCount = 0;
+    
     for (int index = 0; index < self.binanceHistory.count - 1; index++) {
+        JVPriceInfo *firstInfo = self.binanceHistory[index];
+        BOOL isInRange = ((binanceBtcPriceInfo.timeStamp - firstInfo.timeStamp) / 1000) < 30 ? YES : NO;
+        if (!isInRange) {
+            continue;
+        }
+        inRangeCount++;
+        quantity += [firstInfo.quantity floatValue];
         float diffValue = [self.binanceHistory[index+1].price floatValue] - [self.binanceHistory[index].price floatValue];
         if (diffValue > 0) {
             [positiveDiff addObject:@(diffValue)];
@@ -164,7 +153,11 @@ static NSInteger const kMaxHistoryCount = 20;
     }
     
     //遞增或遞減的數目有超過10筆
-    if (positiveCount < kMaxHistoryCount/2 && negativeCount < kMaxHistoryCount/2) {
+    if (positiveCount < inRangeCount/2 && negativeCount < inRangeCount/2) {
+        return;
+    }
+    
+    if (quantity < 30) {
         return;
     }
     
@@ -178,12 +171,6 @@ static NSInteger const kMaxHistoryCount = 20;
         NSLog(@"[Vincent : diff > 35 buy bitMex BTC On %@]", bitMexBtcPriceInfo.price);
     } else if (([binanceBtcPriceInfo.price floatValue] - [bitMexBtcPriceInfo.price floatValue]) > 30) {
         NSLog(@"[Vincent : diff > 30 buy bitMex BTC On %@]", bitMexBtcPriceInfo.price);
-    } else if (([binanceBtcPriceInfo.price floatValue] - [bitMexBtcPriceInfo.price floatValue]) > 25) {
-        NSLog(@"[Vincent : diff > 25 buy bitMex BTC On %@]", bitMexBtcPriceInfo.price);
-    } else if (([binanceBtcPriceInfo.price floatValue] - [bitMexBtcPriceInfo.price floatValue]) > 20) {
-        NSLog(@"[Vincent : diff > 20 buy bitMex BTC On %@]", bitMexBtcPriceInfo.price);
-    } else if (([binanceBtcPriceInfo.price floatValue] - [bitMexBtcPriceInfo.price floatValue]) > 15) {
-        NSLog(@"[Vincent : diff > 15 buy bitMex BTC On %@]", bitMexBtcPriceInfo.price);
     }
     
     if (([binanceBtcPriceInfo.price floatValue] - [bitMexBtcPriceInfo.price floatValue]) < -50) {
@@ -196,12 +183,6 @@ static NSInteger const kMaxHistoryCount = 20;
         NSLog(@"[Vincent : diff > -35 sell bitMex BTC On %@]", bitMexBtcPriceInfo.price);
     } else if (([binanceBtcPriceInfo.price floatValue] - [bitMexBtcPriceInfo.price floatValue]) < -30) {
         NSLog(@"[Vincent : diff > -30 sell bitMex BTC On %@]", bitMexBtcPriceInfo.price);
-    } else if (([binanceBtcPriceInfo.price floatValue] - [bitMexBtcPriceInfo.price floatValue]) < -25) {
-        NSLog(@"[Vincent : diff > -25 sell bitMex BTC On %@]", bitMexBtcPriceInfo.price);
-    } else if (([binanceBtcPriceInfo.price floatValue] - [bitMexBtcPriceInfo.price floatValue]) < -20) {
-        NSLog(@"[Vincent : diff > -20 sell bitMex BTC On %@]", bitMexBtcPriceInfo.price);
-    } else if (([binanceBtcPriceInfo.price floatValue] - [bitMexBtcPriceInfo.price floatValue]) < -15) {
-        NSLog(@"[Vincent : diff > -15 sell bitMex BTC On %@]", bitMexBtcPriceInfo.price);
     }
 }
 

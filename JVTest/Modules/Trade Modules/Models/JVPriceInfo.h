@@ -10,8 +10,10 @@
 
 @interface JVPriceInfo : NSObject
 
-@property (copy, nonatomic) NSString *symbol;
-@property (strong, nonatomic) NSNumber *price;
+@property (copy, nonatomic, readonly) NSString *symbol;
+@property (strong, nonatomic, readonly) NSNumber *price;
+@property (strong, nonatomic, readonly) NSNumber *quantity;
+@property (assign, nonatomic, readonly) NSUInteger timeStamp;
 
 - (instancetype)initWithBinanceJSON:(NSDictionary *)JSON;
 - (instancetype)initWithBitMexJSON:(NSDictionary *)JSON;

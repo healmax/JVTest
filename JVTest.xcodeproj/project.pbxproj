@@ -186,9 +186,9 @@
 		4F73F3EC20B50BC300548D63 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				4F73F3ED20B50BC300548D63 /* JVBtcTradeManager.h */,
-				4F73F3EE20B50BC300548D63 /* JVPriceInfo.m */,
 				4F73F3EF20B50BC300548D63 /* JVPriceInfo.h */,
+				4F73F3EE20B50BC300548D63 /* JVPriceInfo.m */,
+				4F73F3ED20B50BC300548D63 /* JVBtcTradeManager.h */,
 				4F73F3F020B50BC300548D63 /* JVBtcTradeManager.m */,
 			);
 			path = Models;
