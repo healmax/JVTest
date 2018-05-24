@@ -20,6 +20,7 @@
 		4F73F3DF20B402E600548D63 /* JVBinanceSocketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F73F3DE20B402E600548D63 /* JVBinanceSocketManager.m */; };
 		4F73F3F120B50BC300548D63 /* JVPriceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F73F3EE20B50BC300548D63 /* JVPriceInfo.m */; };
 		4F73F3F220B50BC300548D63 /* JVBtcTradeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F73F3F020B50BC300548D63 /* JVBtcTradeManager.m */; };
+		4F73F3F920B6A32400548D63 /* JVPriceGapAlgorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F73F3F820B6A32400548D63 /* JVPriceGapAlgorithm.m */; };
 		F7DB94F2D12B799676ECB9F5 /* Pods_JVTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4F851913739B78FEF236DCA /* Pods_JVTest.framework */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +49,8 @@
 		4F73F3EE20B50BC300548D63 /* JVPriceInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVPriceInfo.m; sourceTree = "<group>"; };
 		4F73F3EF20B50BC300548D63 /* JVPriceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVPriceInfo.h; sourceTree = "<group>"; };
 		4F73F3F020B50BC300548D63 /* JVBtcTradeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVBtcTradeManager.m; sourceTree = "<group>"; };
+		4F73F3F720B6A32400548D63 /* JVPriceGapAlgorithm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JVPriceGapAlgorithm.h; sourceTree = "<group>"; };
+		4F73F3F820B6A32400548D63 /* JVPriceGapAlgorithm.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JVPriceGapAlgorithm.m; sourceTree = "<group>"; };
 		693CB17B8C3053E49081C449 /* Pods-JVTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JVTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JVTest/Pods-JVTest.debug.xcconfig"; sourceTree = "<group>"; };
 		B4F851913739B78FEF236DCA /* Pods_JVTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JVTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5C43AF53A269FFB1CB9B9A1 /* Pods-JVTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JVTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-JVTest/Pods-JVTest.release.xcconfig"; sourceTree = "<group>"; };
@@ -121,6 +124,7 @@
 		4F4B053E20B29B7D00ACB6EB /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				4F73F3F320B69B9000548D63 /* Trade Algorithm Modules */,
 				4F73F3E020B40FBA00548D63 /* Trade Modules */,
 				4F4B053F20B29BA000ACB6EB /* Network Module */,
 			);
@@ -192,6 +196,15 @@
 				4F73F3F020B50BC300548D63 /* JVBtcTradeManager.m */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		4F73F3F320B69B9000548D63 /* Trade Algorithm Modules */ = {
+			isa = PBXGroup;
+			children = (
+				4F73F3F720B6A32400548D63 /* JVPriceGapAlgorithm.h */,
+				4F73F3F820B6A32400548D63 /* JVPriceGapAlgorithm.m */,
+			);
+			path = "Trade Algorithm Modules";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -338,6 +351,7 @@
 				4F73F3F220B50BC300548D63 /* JVBtcTradeManager.m in Sources */,
 				4F0DE25F20B29A9A003EBB2F /* AppDelegate.m in Sources */,
 				4F73F3DC20B3FB9400548D63 /* JVBaseSocketManager.m in Sources */,
+				4F73F3F920B6A32400548D63 /* JVPriceGapAlgorithm.m in Sources */,
 				4F73F3F120B50BC300548D63 /* JVPriceInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
