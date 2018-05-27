@@ -11,8 +11,6 @@
 #import "JVBitMexSocketManager.h"
 #import "JVPriceInfo.h"
 
-static NSInteger const kMaxHistoryCount = 60;
-
 @interface JVBtcTradeManager()
 
 @property (strong, nonatomic) NSMutableArray<JVPriceInfo *> *binanceHistory;
