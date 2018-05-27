@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bin :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mAZ-Hn-UvR">
-                                <rect key="frame" x="66" y="89" width="50" height="21"/>
+                                <rect key="frame" x="10" y="89" width="50" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="8Tq-eN-GAm"/>
                                     <constraint firstAttribute="height" constant="21" id="APN-0I-KfB"/>
@@ -29,7 +29,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mex :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gbi-Re-ex7">
-                                <rect key="frame" x="66" y="151" width="50" height="21"/>
+                                <rect key="frame" x="10" y="151" width="50" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="dMv-OD-iQD"/>
                                     <constraint firstAttribute="width" constant="50" id="in9-he-H2d"/>
@@ -38,14 +38,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CWf-d3-mvu">
-                                <rect key="frame" x="136" y="151" width="229" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CWf-d3-mvu">
+                                <rect key="frame" x="80" y="151.5" width="285" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fCb-Zp-MDw">
-                                <rect key="frame" x="136" y="89" width="229" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fCb-Zp-MDw">
+                                <rect key="frame" x="80" y="89.5" width="285" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -55,12 +55,12 @@
                         <constraints>
                             <constraint firstItem="fCb-Zp-MDw" firstAttribute="centerY" secondItem="mAZ-Hn-UvR" secondAttribute="centerY" id="3GQ-ms-LdC"/>
                             <constraint firstItem="mAZ-Hn-UvR" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="69" id="GFc-Co-Be3"/>
-                            <constraint firstItem="mAZ-Hn-UvR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="66" id="JcA-gh-ahs"/>
+                            <constraint firstItem="mAZ-Hn-UvR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="JcA-gh-ahs"/>
                             <constraint firstItem="CWf-d3-mvu" firstAttribute="leading" secondItem="fCb-Zp-MDw" secondAttribute="leading" id="Lhl-sG-rTO"/>
                             <constraint firstItem="fCb-Zp-MDw" firstAttribute="leading" secondItem="mAZ-Hn-UvR" secondAttribute="trailing" constant="20" id="XR7-h2-I5s"/>
                             <constraint firstItem="CWf-d3-mvu" firstAttribute="trailing" secondItem="fCb-Zp-MDw" secondAttribute="trailing" id="anf-0P-6lb"/>
                             <constraint firstItem="Gbi-Re-ex7" firstAttribute="top" secondItem="mAZ-Hn-UvR" secondAttribute="bottom" constant="41" id="fXu-OB-lxK"/>
-                            <constraint firstItem="Gbi-Re-ex7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="66" id="kw2-EW-LF9"/>
+                            <constraint firstItem="Gbi-Re-ex7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="kw2-EW-LF9"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fCb-Zp-MDw" secondAttribute="trailing" constant="10" id="ydH-Wd-7Pc"/>
                             <constraint firstItem="CWf-d3-mvu" firstAttribute="centerY" secondItem="Gbi-Re-ex7" secondAttribute="centerY" id="zjP-7G-66w"/>
                         </constraints>
