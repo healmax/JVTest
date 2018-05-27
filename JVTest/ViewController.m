@@ -32,6 +32,10 @@
     [super viewDidAppear:animated];
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)commonInit {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(binanceSocketManagerDidReceiveMessage:) name:kJVBinanceSocketManagerDidReceiveMessage object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bitMexSocketManagerDidReceiveMessage:) name:kJVBitMexSocketManagerDidReceiveMessage object:nil];
@@ -40,12 +44,12 @@
 
 - (void)binanceSocketManagerDidReceiveMessage:(NSNotification *)notification {
     JVPriceInfo *priceInfo = notification.object;
-    self.binancePriceLabel.text = [priceInfo.price stringValue];
+    self.binancePriceLabel.text = [priceInfo description];
 }
 
 - (void)bitMexSocketManagerDidReceiveMessage:(NSNotification *)notification {
     JVPriceInfo *priceInfo = notification.object;
-    self.mexPriceLabel.text = [priceInfo.price stringValue];
+    self.mexPriceLabel.text = [priceInfo description];
 }
 
 
