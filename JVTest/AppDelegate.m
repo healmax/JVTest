@@ -20,7 +20,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [[JVBitMexSocketManager shareInstance] openSocket];
-    [[JVBitMexSocketManager shareInstance] subscribeBTCChannel];
     [[JVBinanceSocketManager shareInstance] openSocket];
     
     return YES;
