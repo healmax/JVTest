@@ -49,6 +49,9 @@ static NSInteger const kMaxHistoryCount = 60;
 - (void)binanceSocketManagerDidReceiveMessage:(NSNotification *)notification {
     JVPriceInfo *priceInfo = notification.object;
     @synchronized(self) {
+        if (!priceInfo) {
+            return;
+        }
         if (self.binanceHistory.count >= kMaxHistoryCount) {
             [self.binanceHistory removeObjectAtIndex:0];
         }
@@ -61,6 +64,9 @@ static NSInteger const kMaxHistoryCount = 60;
 - (void)bitMexSocketManagerDidReceiveMessage:(NSNotification *)notification {
     JVPriceInfo *priceInfo = notification.object;
     @synchronized(self) {
+        if (!priceInfo) {
+            return;
+        }
         if (self.bitMexHistory.count >= kMaxHistoryCount) {
             [self.bitMexHistory removeObjectAtIndex:0];
         }
@@ -92,7 +98,7 @@ static NSInteger const kMaxHistoryCount = 60;
         }
         inRangeCount++;
         quantity += [firstInfo.quantity floatValue];
-        float diffValue = [self.binanceHistory[index+1].price floatValue] - [self.binanceHistory[index].price floatValue];
+        double diffValue = self.binanceHistory[index+1].priceValue - self.binanceHistory[index].priceValue;
         if (diffValue > 0) {
             [positiveDiff addObject:@(diffValue)];
             positiveCount++;
