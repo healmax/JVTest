@@ -42,9 +42,9 @@ static NSTimeInterval kCheckingTimeInterval = 5.0;
 }
 
 - (void)cancelSocket {
-    [self.checkingTimer invalidate];
-    self.checkingTimer = nil;
+    self.socket.delegate = nil;
     [self.socket close];
+    self.socket = nil;
 }
 
 - (void)reconnectSocket {
@@ -83,11 +83,16 @@ static NSTimeInterval kCheckingTimeInterval = 5.0;
 #pragma mark - SRWebSocketDelegate
 
 - (void)webSocketDidOpen:(SRWebSocket *)webSocket {
+    NSLog(@"web socket did open:%@", self.url);
     [self setupCheckingTimer];
     [self socketDidOpen];
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message {
+    if (self.socket.readyState != SR_OPEN) {
+        return;
+    }
+    
     if ([message isKindOfClass:[NSString class]]) {
         NSData *data = [message dataUsingEncoding:NSUTF8StringEncoding];
         id json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
@@ -99,12 +104,12 @@ static NSTimeInterval kCheckingTimeInterval = 5.0;
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error {
-    NSLog(@"web socket fail with error:%@", error);
+    NSLog(@"web socket:%@ fail with error:%@", self.url, error);
     [self cancelSocket];
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean {
-    NSLog(@"web socket close with reason:%@", reason);
+    NSLog(@"web socket:%@ close with reason:%@", self.url, reason);
     [self reconnectSocket];
 }
 
