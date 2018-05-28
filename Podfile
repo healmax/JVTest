@@ -8,5 +8,5 @@ target 'JVTest' do
 #  pod 'AFNetworking', '3.0.0'
   pod 'SwaggerClient', :path => 'ThirdParty/SwaggerClient'
   pod 'SocketRocket'
-
+  pod 'BlocksKit'
 end
