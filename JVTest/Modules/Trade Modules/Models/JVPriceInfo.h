@@ -11,11 +11,17 @@
 @interface JVPriceInfo : NSObject
 
 @property (copy, nonatomic, readonly) NSString *symbol;
-@property (strong, nonatomic, readonly) NSNumber *price;
-@property (strong, nonatomic, readonly) NSNumber *quantity;
-@property (assign, nonatomic, readonly) NSUInteger timeStamp;
+@property (strong, nonatomic, readonly) NSNumber *close;
+@property (strong, nonatomic, readonly) NSNumber *open;
+@property (strong, nonatomic, readonly) NSNumber *height;
+@property (strong, nonatomic, readonly) NSNumber *low;
+@property (strong, nonatomic, readonly) NSNumber *volume;
+@property (assign, nonatomic, readonly) NSInteger timeStamp;
+@property (assign, nonatomic, readonly) NSInteger nextSecondTimeStamp;
+@property (strong, nonatomic, readonly) NSDate *date;
 
-- (instancetype)initWithBinanceJSON:(NSDictionary *)JSON;
+- (instancetype)initWithBinanceApiArrayInfo:(NSArray *)arrayInfo;
+- (instancetype)initWithBinanceSocketJSON:(NSDictionary *)JSON;
 - (instancetype)initWithBitMexJSON:(NSDictionary *)JSON;
 
 @end

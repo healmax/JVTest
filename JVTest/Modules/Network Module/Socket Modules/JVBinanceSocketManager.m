@@ -26,7 +26,7 @@ NSString * const kJVBinanceSocketManagerDidReceiveMessage = @"JVBinanceSocketMan
 }
 
 - (void)didReceiveMessage:(NSDictionary *)message {
-    JVPriceInfo *priceInfo = [[JVPriceInfo alloc] initWithBinanceJSON:message];
+    JVPriceInfo *priceInfo = [[JVPriceInfo alloc] initWithBinanceSocketJSON:message];
     [[NSNotificationCenter defaultCenter] postNotificationName:kJVBinanceSocketManagerDidReceiveMessage object:priceInfo];
 }
 

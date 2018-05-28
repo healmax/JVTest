@@ -6,26 +6,26 @@
 //  Copyright © 2018年 Vincent Chiang. All rights reserved.
 //
 
-#import "JVBinanceApiMAnager.h"
+#import "JVBinanceApiManager.h"
 #import "JVPriceInfo.h"
 #import <AFNetworking/AFNetworking.h>
 
 static NSString * const kBinanceUrlString = @"https://api.binance.com";
 
-@interface JVBinanceApiMAnager()
+@interface JVBinanceApiManager()
 
 @property (strong, nonatomic, readwrite) AFHTTPSessionManager *manager; // compose
 
 @end
 
-@implementation JVBinanceApiMAnager
+@implementation JVBinanceApiManager
 
 +(instancetype)sharedManager
 {
-    static JVBinanceApiMAnager *shared = nil;
+    static JVBinanceApiManager *shared = nil;
     static dispatch_once_t token;
     dispatch_once(&token, ^{
-        shared = [[JVBinanceApiMAnager alloc] init];
+        shared = [[JVBinanceApiManager alloc] init];
     });
     return shared;
 }
@@ -42,19 +42,27 @@ static NSString * const kBinanceUrlString = @"https://api.binance.com";
     return self;
 }
 
-- (void)getBTCPriceWithCompletion:(void(^)(JVPriceInfo *priceInfo, NSError *error))completion {
-    NSString *path = @"api/v3/ticker/price";
+- (void)getBTCHistoryWithStartTimeTimeStamp:(NSUInteger)startTimeTimeStamp completion:(void(^)(NSArray<JVPriceInfo *> *priceInfos, NSError *error))completion {
+    NSString *path = @"api/v1/klines";
     NSDictionary *parameters = @{
                                  @"symbol" : @"BTCUSDT",
+                                 @"interval" : @"1m",
+                                 @"startTime" : [@(startTimeTimeStamp) stringValue]
                                  };
     [self.manager GET:path parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        JVPriceInfo *priceInfo = [[JVPriceInfo alloc] initWithBinanceJSON:responseObject];
+        NSMutableArray *results = [NSMutableArray new];
+        JVPriceInfo *priceInfo;
+        for (NSArray *priceInfoArray in responseObject) {
+            priceInfo = [[JVPriceInfo alloc] initWithBinanceApiArrayInfo:priceInfoArray];
+            [results addObject:priceInfo];
+        }
+        
         if (completion) {
-            completion(priceInfo, nil);
+            completion([results copy], nil);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if (completion) {
-
+            completion(nil, error);
         }
     }];
 }

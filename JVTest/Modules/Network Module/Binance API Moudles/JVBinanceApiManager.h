@@ -11,12 +11,12 @@
 @class AFHTTPSessionManager;
 @class JVPriceInfo;
 
-@interface JVBinanceApiMAnager : NSObject
+@interface JVBinanceApiManager : NSObject
 
 +(instancetype)sharedManager;
 
 @property (strong, nonatomic, readonly) AFHTTPSessionManager *manager; // compose
 
-- (void)getBTCPriceWithCompletion:(void(^)(JVPriceInfo *priceInfo, NSError *error))completion;
+- (void)getBTCHistoryWithStartTimeTimeStamp:(NSUInteger)startTimeTimeStamp completion:(void(^)(NSArray<JVPriceInfo *> *priceInfos, NSError *error))completion;
 
 @end

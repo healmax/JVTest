@@ -21,6 +21,8 @@
 		4F73F3F120B50BC300548D63 /* JVPriceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F73F3EE20B50BC300548D63 /* JVPriceInfo.m */; };
 		4F73F3F220B50BC300548D63 /* JVBtcTradeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F73F3F020B50BC300548D63 /* JVBtcTradeManager.m */; };
 		4F73F3F920B6A32400548D63 /* JVPriceGapAlgorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F73F3F820B6A32400548D63 /* JVPriceGapAlgorithm.m */; };
+		4F73F3FE20BA69DE00548D63 /* JVBinanceHistoryDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F73F3FD20BA69DE00548D63 /* JVBinanceHistoryDownloader.m */; };
+		4F73F40320BA6F0C00548D63 /* JVUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F73F40220BA6F0C00548D63 /* JVUtils.m */; };
 		F7DB94F2D12B799676ECB9F5 /* Pods_JVTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4F851913739B78FEF236DCA /* Pods_JVTest.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,7 +39,7 @@
 		4F0DE26C20B29A9B003EBB2F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4F4B054720B2A8F500ACB6EB /* JVBitMexApiMAnager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JVBitMexApiMAnager.h; sourceTree = "<group>"; };
 		4F4B054820B2A8F500ACB6EB /* JVBitMexApiMAnager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JVBitMexApiMAnager.m; sourceTree = "<group>"; };
-		4F4B054A20B2A91000ACB6EB /* JVBinanceApiMAnager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JVBinanceApiMAnager.h; sourceTree = "<group>"; };
+		4F4B054A20B2A91000ACB6EB /* JVBinanceApiManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JVBinanceApiManager.h; sourceTree = "<group>"; };
 		4F4B054B20B2A91000ACB6EB /* JVBinanceApiMAnager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JVBinanceApiMAnager.m; sourceTree = "<group>"; };
 		4F73F3D720B3FAA000548D63 /* JVBitMexSocketManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JVBitMexSocketManager.h; sourceTree = "<group>"; };
 		4F73F3D820B3FAA000548D63 /* JVBitMexSocketManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JVBitMexSocketManager.m; sourceTree = "<group>"; };
@@ -51,6 +53,10 @@
 		4F73F3F020B50BC300548D63 /* JVBtcTradeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVBtcTradeManager.m; sourceTree = "<group>"; };
 		4F73F3F720B6A32400548D63 /* JVPriceGapAlgorithm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JVPriceGapAlgorithm.h; sourceTree = "<group>"; };
 		4F73F3F820B6A32400548D63 /* JVPriceGapAlgorithm.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JVPriceGapAlgorithm.m; sourceTree = "<group>"; };
+		4F73F3FC20BA69DE00548D63 /* JVBinanceHistoryDownloader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JVBinanceHistoryDownloader.h; sourceTree = "<group>"; };
+		4F73F3FD20BA69DE00548D63 /* JVBinanceHistoryDownloader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JVBinanceHistoryDownloader.m; sourceTree = "<group>"; };
+		4F73F40120BA6F0C00548D63 /* JVUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JVUtils.h; sourceTree = "<group>"; };
+		4F73F40220BA6F0C00548D63 /* JVUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JVUtils.m; sourceTree = "<group>"; };
 		693CB17B8C3053E49081C449 /* Pods-JVTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JVTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JVTest/Pods-JVTest.debug.xcconfig"; sourceTree = "<group>"; };
 		B4F851913739B78FEF236DCA /* Pods_JVTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JVTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5C43AF53A269FFB1CB9B9A1 /* Pods-JVTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JVTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-JVTest/Pods-JVTest.release.xcconfig"; sourceTree = "<group>"; };
@@ -124,6 +130,8 @@
 		4F4B053E20B29B7D00ACB6EB /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				4F73F3FF20BA6EF000548D63 /* Common Modules */,
+				4F73F3FA20BA698700548D63 /* History Record Modules */,
 				4F73F3F320B69B9000548D63 /* Trade Algorithm Modules */,
 				4F73F3E020B40FBA00548D63 /* Trade Modules */,
 				4F4B053F20B29BA000ACB6EB /* Network Module */,
@@ -144,7 +152,7 @@
 		4F4B054520B2A8A100ACB6EB /* Binance API Moudles */ = {
 			isa = PBXGroup;
 			children = (
-				4F4B054A20B2A91000ACB6EB /* JVBinanceApiMAnager.h */,
+				4F4B054A20B2A91000ACB6EB /* JVBinanceApiManager.h */,
 				4F4B054B20B2A91000ACB6EB /* JVBinanceApiMAnager.m */,
 			);
 			path = "Binance API Moudles";
@@ -205,6 +213,40 @@
 				4F73F3F820B6A32400548D63 /* JVPriceGapAlgorithm.m */,
 			);
 			path = "Trade Algorithm Modules";
+			sourceTree = "<group>";
+		};
+		4F73F3FA20BA698700548D63 /* History Record Modules */ = {
+			isa = PBXGroup;
+			children = (
+				4F73F3FB20BA69A000548D63 /* Models */,
+			);
+			path = "History Record Modules";
+			sourceTree = "<group>";
+		};
+		4F73F3FB20BA69A000548D63 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4F73F3FC20BA69DE00548D63 /* JVBinanceHistoryDownloader.h */,
+				4F73F3FD20BA69DE00548D63 /* JVBinanceHistoryDownloader.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4F73F3FF20BA6EF000548D63 /* Common Modules */ = {
+			isa = PBXGroup;
+			children = (
+				4F73F40020BA6EFA00548D63 /* Models */,
+			);
+			path = "Common Modules";
+			sourceTree = "<group>";
+		};
+		4F73F40020BA6EFA00548D63 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4F73F40120BA6F0C00548D63 /* JVUtils.h */,
+				4F73F40220BA6F0C00548D63 /* JVUtils.m */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -347,12 +389,14 @@
 				4F0DE26220B29A9B003EBB2F /* ViewController.m in Sources */,
 				4F73F3DF20B402E600548D63 /* JVBinanceSocketManager.m in Sources */,
 				4F73F3D920B3FAA000548D63 /* JVBitMexSocketManager.m in Sources */,
+				4F73F3FE20BA69DE00548D63 /* JVBinanceHistoryDownloader.m in Sources */,
 				4F0DE26D20B29A9B003EBB2F /* main.m in Sources */,
 				4F73F3F220B50BC300548D63 /* JVBtcTradeManager.m in Sources */,
 				4F0DE25F20B29A9A003EBB2F /* AppDelegate.m in Sources */,
 				4F73F3DC20B3FB9400548D63 /* JVBaseSocketManager.m in Sources */,
 				4F73F3F920B6A32400548D63 /* JVPriceGapAlgorithm.m in Sources */,
 				4F73F3F120B50BC300548D63 /* JVPriceInfo.m in Sources */,
+				4F73F40320BA6F0C00548D63 /* JVUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,7 +538,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B9JJV5E86Z;
+				DEVELOPMENT_TEAM = M4XZKRV39D;
 				INFOPLIST_FILE = JVTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -512,7 +556,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B9JJV5E86Z;
+				DEVELOPMENT_TEAM = M4XZKRV39D;
 				INFOPLIST_FILE = JVTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

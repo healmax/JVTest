@@ -11,11 +11,16 @@
 #import "JVBinanceSocketManager.h"
 #import "JVPriceInfo.h"
 #import "JVBtcTradeManager.h"
+#import "JVBinanceApiManager.h"
+#import "JVBinanceHistoryDownloader.h"
+#import "JVPriceInfo.h"
 
 @interface ViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *binancePriceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *mexPriceLabel;
+
+@property (strong, nonatomic) JVBinanceHistoryDownloader *manager;
 
 @end
 
@@ -25,11 +30,13 @@
     [super viewDidLoad];
     [self commonInit];
     [JVBtcTradeManager shareInstance];
-    // Do any additional setup after loading the view, typically from a nib.
+    self.manager = [[JVBinanceHistoryDownloader alloc] init];
+    [self.manager test];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
 }
 
 - (void)commonInit {
@@ -40,12 +47,12 @@
 
 - (void)binanceSocketManagerDidReceiveMessage:(NSNotification *)notification {
     JVPriceInfo *priceInfo = notification.object;
-    self.binancePriceLabel.text = [priceInfo.price stringValue];
+    self.binancePriceLabel.text = [priceInfo.close stringValue];
 }
 
 - (void)bitMexSocketManagerDidReceiveMessage:(NSNotification *)notification {
     JVPriceInfo *priceInfo = notification.object;
-    self.mexPriceLabel.text = [priceInfo.price stringValue];
+    self.mexPriceLabel.text = [priceInfo.close stringValue];
 }
 
 
