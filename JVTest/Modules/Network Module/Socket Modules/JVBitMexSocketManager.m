@@ -34,17 +34,12 @@ NSString * const kJVBitMexSocketManagerDidReceiveMessage = @"JVBitMexSocketManag
 }
 
 - (void)socketDidOpen {
-    if (self.subscribeBTCChannelBlock) {
-        self.subscribeBTCChannelBlock();
-    }
+    [self subscribeBTCChannel];
 }
 
 - (void)subscribeBTCChannel {
-    __weak JVBitMexSocketManager *weakSelf = self;
-    self.subscribeBTCChannelBlock = ^{
-        NSString *subscribeChannel = @"{\"op\": \"subscribe\", \"args\": [\"instrument:XBTUSD\"]}";
-        [weakSelf subscribeChannelWithString:subscribeChannel];
-    };
+    NSString *subscribeChannel = @"{\"op\": \"subscribe\", \"args\": [\"instrument:XBTUSD\"]}";
+    [self subscribeChannelWithString:subscribeChannel];
 }
 
 - (void)didReceiveMessage:(NSDictionary *)message {

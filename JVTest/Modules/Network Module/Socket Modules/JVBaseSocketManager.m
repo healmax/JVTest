@@ -10,8 +10,8 @@
 #import <SocketRocket/SRWebSocket.h>
 
 @interface JVBaseSocketManager()<SRWebSocketDelegate>
-
-@property(strong, nonatomic, readwrite) SRWebSocket *socket;
+@property (strong, nonatomic) NSURL *url;
+@property (strong, nonatomic, readwrite) SRWebSocket *socket;
 
 @end
 
@@ -19,14 +19,19 @@
 
 - (instancetype)initWithUrl:(NSURL *)url {
     if (self = [super init]) {
-        self.socket = [[SRWebSocket alloc] initWithURL:url];
-        self.socket.delegate = self;
+        _url = url;
+        [self setupSocket];
     }
     
     return  self;
 }
 
 #pragma mark - public
+
+- (void)setupSocket {
+    self.socket = [[SRWebSocket alloc] initWithURL:self.url];
+    self.socket.delegate = self;
+}
 
 - (void)openSocket {
     [self.socket open];
@@ -68,5 +73,11 @@
     [self socketDidOpen];
 }
 
+- (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error {
+    NSLog(@"web socket fail with error:%@", error);
+    [self cancelSocket];
+    [self setupSocket];
+    [self openSocket];
+}
 
 @end

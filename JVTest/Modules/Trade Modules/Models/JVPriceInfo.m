@@ -8,10 +8,13 @@
 
 #import "JVPriceInfo.h"
 
+static NSDateFormatter *bitMexDateFormatter;
+
 @implementation JVPriceInfo
 
 - (instancetype)initWithBinanceSocketJSON:(NSDictionary *)JSON {
     if (self = [super init]) {
+        _sourceName = @"Binance";
         _symbol = JSON[@"s"];
         _close = @([JSON[@"c"] floatValue]);
         _volume = @([JSON[@"Q"] floatValue]);
@@ -50,21 +53,39 @@
 }
 
 - (instancetype)initWithBitMexJSON:(NSDictionary *)JSON {
+    NSDictionary *dict = [JSON[@"data"] firstObject];
+    if (!dict) {
+        return nil;
+    }
+    
+    [self setupBitMexDateFormatter];
+    
     if (self = [super init]) {
-        _symbol = [JSON[@"data"] firstObject][@"symbol"];
-        _close = [JSON[@"data"] firstObject][@"lastPrice"];
+        _sourceName = @"BitMex";
+        _symbol = dict[@"symbol"];
+        _close = dict[@"lastPrice"];
+        _timeStamp = [[bitMexDateFormatter dateFromString:dict[@"timestamp"]] timeIntervalSince1970] * 1000;
     }
     
     return self;
 }
 
-- (NSString *)description {
-    [NSString stringWithFormat:@"Price : %@, quantity : %@, TimeStamp: %@", self.close, self.volume, @(self.timeStamp)];
-    return [self.close stringValue];
+- (void)setupBitMexDateFormatter {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        bitMexDateFormatter = [[NSDateFormatter alloc] init];
+        [bitMexDateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];//2018-05-27T14:29:25.910Z
+        [bitMexDateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+    });
 }
 
+- (NSString *)description {
+    return [NSString stringWithFormat:@"Source:%@ Price : %@, quantity : %@, Date: %@", self.sourceName, self.close, self.volume, self.date];;
+}
+    
+    
 #pragma mark - getter
-
+    
 - (NSDate *)date {
     if (!_timeStamp) {
         return nil;
@@ -79,6 +100,15 @@
     }
     
     return _timeStamp + 1000;
+    return [NSString stringWithFormat:@"Source:%@ Price : %@, quantity : %@, Date: %@", self.sourceName, self.close, self.volume, self.date];;
 }
+
+#pragma mark - Accessor
+
+- (double)priceValue {
+    return [self.close doubleValue];
+}
+
+
 
 @end

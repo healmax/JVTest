@@ -14,6 +14,5 @@ extern NSString * const kJVBitMexSocketManagerDidReceiveMessage;
 @interface JVBitMexSocketManager : JVBaseSocketManager
 
 + (instancetype)shareInstance;
-- (void)subscribeBTCChannel;
 
 @end
