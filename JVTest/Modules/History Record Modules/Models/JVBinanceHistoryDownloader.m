@@ -63,7 +63,7 @@ static NSString * const kFileName = @"BinanceKLineHistory.txt";
     
     if (![[NSFileManager defaultManager] fileExistsAtPath:[self filePath]]) {
         [[NSFileManager defaultManager] createFileAtPath:[self filePath] contents:nil attributes:nil];
-        NSString *contents = @"\"Date\",\"Time\",\"Open\",\"High\",\"Low\",\"Close\",\"TotalVolume\"\n";
+        NSString *contents = @"\"Date\",\"Time\",\"Open\",\"High\",\"Low\",\"Close\",\"TotalVolume\"\r\n";
         [contents writeToFile:[self filePath] atomically:YES encoding: NSUnicodeStringEncoding error:&error];
     }
 
@@ -76,7 +76,7 @@ static NSString * const kFileName = @"BinanceKLineHistory.txt";
                 [weakSelf.fileHandler seekToEndOfFile];
                 for (JVPriceInfo *priceInfo in priceInfos) {
                     [weakSelf.fileHandler seekToEndOfFile];
-                    NSString *multiChartInfo = [NSString stringWithFormat:@"%@,%.6f,%.6f,%.6f,%.6f,%ld\n", [dateFormatter stringFromDate:priceInfo.date], [priceInfo.open floatValue], [priceInfo.height floatValue], [priceInfo.low floatValue], [priceInfo.close floatValue], (long)[priceInfo.volume integerValue]];
+                    NSString *multiChartInfo = [NSString stringWithFormat:@"%@,%.6f,%.6f,%.6f,%.6f,0\r\n", [dateFormatter stringFromDate:priceInfo.date], [priceInfo.open floatValue], [priceInfo.height floatValue], [priceInfo.low floatValue], [priceInfo.close floatValue]];
 
                     NSData *data = [multiChartInfo dataUsingEncoding:NSUnicodeStringEncoding];
                     [weakSelf.fileHandler writeData:data];
@@ -88,6 +88,7 @@ static NSString * const kFileName = @"BinanceKLineHistory.txt";
                 NSInteger nowTimeStamp = [[[NSDate alloc] init] timeIntervalSince1970];
                 if (nowTimeStamp - nextTimeStamp > 60) {
                     [weakSelf downloadKLineWithStartTimeStamp:[priceInfos lastObject].nextSecondTimeStamp];
+//                    [weakSelf.fileHandler closeFile];
                 } else {
                     [weakSelf.fileHandler closeFile];
                 }
