@@ -31,7 +31,7 @@
     [self commonInit];
     [JVBtcTradeManager shareInstance];
     self.manager = [[JVBinanceHistoryDownloader alloc] init];
-    [self.manager test];
+    [self.manager downloadOneMinKBarHistory];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

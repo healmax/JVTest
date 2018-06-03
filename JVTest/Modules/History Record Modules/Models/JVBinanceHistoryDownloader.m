@@ -50,6 +50,46 @@ static NSString * const kFileName = @"BinanceKLineHistory.txt";
     return _fileHandler;
 }
 
+- (NSFileHandle *)readFileHandler {
+    if (!_fileHandler) {
+        _fileHandler = [NSFileHandle fileHandleForReadingAtPath:[self filePath]];
+    }
+    
+    return _fileHandler;
+}
+
+- (void)downloadOneMinKBarHistory {
+    NSError *error;
+    if (![[NSFileManager defaultManager] fileExistsAtPath:[self rootPath]]) {
+        [[NSFileManager defaultManager] createDirectoryAtPath:[self rootPath] withIntermediateDirectories:YES attributes:nil error:&error];
+        
+        [[NSFileManager defaultManager] createFileAtPath:[self filePath] contents:nil attributes:nil];
+        NSString *contents = @"\"Date\",\"Time\",\"Open\",\"High\",\"Low\",\"Close\",\"TotalVolume\"\r\n";
+        [contents writeToFile:[self filePath] atomically:YES encoding: NSUnicodeStringEncoding error:&error];
+    } else {
+
+        @autoreleasepool
+        {
+            NSData *data = [self.readFileHandler readDataToEndOfFile];
+            NSString *myString = [[NSString alloc] initWithData:data encoding:NSUnicodeStringEncoding];
+            NSArray *allPriceInfos = [myString componentsSeparatedByString:@"\r\n"];
+            NSString *lastPriceInfo = allPriceInfos[allPriceInfos.count - 2];
+            NSArray<NSString *> *componentLastPriceInfo = [lastPriceInfo componentsSeparatedByString:@","];
+            NSString *lastPriceInfoDateString = [NSString stringWithFormat:@"%@,%@", componentLastPriceInfo[0], componentLastPriceInfo[1]];
+            [self.readFileHandler closeFile];
+
+            const char * a =[lastPriceInfoDateString UTF8String];
+            NSString *testest = [NSString stringWithUTF8String:a];
+            NSDateFormatter *dateFormatter = [JVUtils sharedInstance].dateFormatter;
+            NSDate *date = [dateFormatter dateFromString:testest];
+            NSTimeInterval lastTimeInterval = date.timeIntervalSince1970 * 1000;
+            NSLog(@"%@", date);
+        }
+    }
+    
+    
+}
+
 - (void)test {
     [self downloadKLineWithStartTimeStamp:kStartTimeTimeStamp];
 }
@@ -88,7 +128,6 @@ static NSString * const kFileName = @"BinanceKLineHistory.txt";
                 NSInteger nowTimeStamp = [[[NSDate alloc] init] timeIntervalSince1970];
                 if (nowTimeStamp - nextTimeStamp > 60) {
                     [weakSelf downloadKLineWithStartTimeStamp:[priceInfos lastObject].nextSecondTimeStamp];
-//                    [weakSelf.fileHandler closeFile];
                 } else {
                     [weakSelf.fileHandler closeFile];
                 }

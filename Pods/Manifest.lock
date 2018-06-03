@@ -14,6 +14,21 @@ PODS:
   - AFNetworking/Serialization (3.2.0)
   - AFNetworking/UIKit (3.2.0):
     - AFNetworking/NSURLSession
+  - BlocksKit (2.2.5):
+    - BlocksKit/All (= 2.2.5)
+  - BlocksKit/All (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+    - BlocksKit/MessageUI
+    - BlocksKit/UIKit
+  - BlocksKit/Core (2.2.5)
+  - BlocksKit/DynamicDelegate (2.2.5)
+  - BlocksKit/MessageUI (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+  - BlocksKit/UIKit (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
   - ISO8601 (0.6.0)
   - JSONModel (1.7.0)
   - SocketRocket (0.5.1)
@@ -23,6 +38,7 @@ PODS:
     - JSONModel (~> 1.2)
 
 DEPENDENCIES:
+  - BlocksKit
   - SocketRocket
   - SwaggerClient (from `ThirdParty/SwaggerClient`)
 
@@ -32,11 +48,12 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: 8ac6017b94ea105479f7776e5288e48ae9c59bb4
+  BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   ISO8601: d3ea3ba9b752820cf92c6b47a9ee327e9f0e13fc
   JSONModel: 840bc0fcffb24b8454d2c026bf26fea454b8e98d
   SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
-  SwaggerClient: da82da843b5a38801ac5800db63debbfa5b1a356
+  SwaggerClient: 46f6ec176d112e7d80e95d0e3ca7cc2c285692dd
 
-PODFILE CHECKSUM: e174e12e23d7b01e8eeadb00951f8c40865f5372
+PODFILE CHECKSUM: a82068b57a640482ecbda504ec8af86ce8209fda
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.4.0

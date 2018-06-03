@@ -100,7 +100,6 @@ static NSDateFormatter *bitMexDateFormatter;
     }
     
     return _timeStamp + 1000;
-    return [NSString stringWithFormat:@"Source:%@ Price : %@, quantity : %@, Date: %@", self.sourceName, self.close, self.volume, self.date];;
 }
 
 #pragma mark - Accessor

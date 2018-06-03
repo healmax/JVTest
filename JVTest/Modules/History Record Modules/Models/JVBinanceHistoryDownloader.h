@@ -10,6 +10,6 @@
 
 @interface JVBinanceHistoryDownloader : NSObject
 
-- (void)test;
+- (void)downloadOneMinKBarHistory;
 
 @end
